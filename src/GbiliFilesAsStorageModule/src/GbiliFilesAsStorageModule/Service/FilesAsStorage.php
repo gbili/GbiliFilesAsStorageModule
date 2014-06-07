@@ -74,7 +74,7 @@ class FilesAsStorage
         if (null == $inflector) {
             // CamelCase to under 
             $inflector = function ($string) {
-                $parts = preg_split('/(?=[A-Z])', $string);
+                $parts = preg_split('/(?=[A-Z])/', $string);
                 return strtolower(implode('_', $parts));
             };
         }
