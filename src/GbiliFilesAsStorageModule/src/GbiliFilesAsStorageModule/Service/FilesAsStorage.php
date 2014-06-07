@@ -130,7 +130,7 @@ class FilesAsStorage
     public function extractTaxonomyName($methodName)
     {
         $getPrefixed = ('get' === substr($methodName, 0, 3));
-        $what = (!$getPrefixed)? $methodName : substr($methodName, 3); 
+        $what = ((!$getPrefixed)? $methodName : substr($methodName, 3));
 
         if ($this->hasInflector()) {
             if (is_callable($this->inflector)) {
