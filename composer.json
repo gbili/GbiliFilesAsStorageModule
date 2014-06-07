@@ -1,0 +1,21 @@
+{
+    "name": "gbili/gbili-files-as-storage-module",
+    "description": "Zend Framework 2 Module that uses file system as entites storage. Files names and content is used",
+    "license": "MIT",
+    "keywords": [
+        "module",
+        "zf2",
+        "file",
+        "storage",
+        "array",
+        "gbili"
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-0": {
+            "GbiliFilesAsStorageModule\\": "src/"
+        }
+    }
+}
