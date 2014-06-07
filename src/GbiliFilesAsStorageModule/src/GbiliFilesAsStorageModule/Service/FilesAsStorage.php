@@ -134,7 +134,8 @@ class FilesAsStorage
 
         if ($this->hasInflector()) {
             if (is_callable($this->inflector)) {
-                $what = $this->inflector($what);
+                $inflector = $this->inflector;
+                $what = $inflector($what);
             } else {
                 $what = call_user_func(array($this->inflector, ''), $what);
             }
