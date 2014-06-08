@@ -66,16 +66,23 @@ class FilesAsStorage
     protected $inflector;
 
     /**
-     * @param $inflector set to false to avoid inflection
+     * @param string $storageDir the directory in which data is stored..
+     * @param callable $inflector set to false to avoid inflection
+     * @param string $wordSeparator used for the default inflector, 
+     *  Ex: $wordSeparator='_' -> 'getPlaceTag' -> 'get_place_tag'
      */
-    public function __construct($storageDir, $inflector=null)
+    public function __construct($storageDir, $inflector=null, $wordSeparator='_')
     {
         $this->storageDir = $storageDir;
         if (null == $inflector) {
+            if (!is_string($wordSeparator)) {
+                throw new \Exception('3rd param must be string');
+            }
             // CamelCase to under 
-            $inflector = function ($string) {
-                $parts = preg_split('/(?=[A-Z])/', $string);
-                return strtolower(implode('_', $parts));
+            $inflector = function ($string) use ($wordSeparator) {
+                $string = lcfirst($string);
+                $replacement = '/' . $wordSeparator . '${1}/';
+                return preg_replace('/(?=[A-Z])/', $replacement, $string);
             };
         }
         $this->setInflector($inflector);
